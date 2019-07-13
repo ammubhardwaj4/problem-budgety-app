@@ -33,10 +33,10 @@ var budgetController = (function(){
             //[1 2 3 4 5], next ID = 6
             //[1 2 4 6 8], next ID = 9
             // ID = last ID + 1
-            
+            let type = data.allItems[type];
             // Create new ID
-            if (data.allItems[type].length > 0) {
-                ID = data.allItems[type][data.allItems[type].length - 1].id + 1;
+            if (type && type.length > 0) {
+                ID = type[type.length - 1].id + 1;
             } else {
                 ID = 0;
             }
@@ -49,7 +49,10 @@ var budgetController = (function(){
             }
             
             // Push it into our data structure
-            data.allItems[type].push(newItem);
+		if(type && type.length > 0) {
+			data.allItems[type].push(newItem);
+		}
+            
             
             // Return the new element
             return newItem;
